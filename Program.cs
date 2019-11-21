@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EncryptingViaMD5
 {
@@ -10,10 +7,13 @@ namespace EncryptingViaMD5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(EncryptingMD5("Tu#ki@ja"));
+            string password;
+
+            Console.WriteLine("Enter your dev-safe password: ");
+            password = Console.ReadLine();
+            Console.WriteLine(EncryptingMD5(password));
             Console.ReadLine();
         }
-
         private static string EncryptingMD5(string valueToBeEncrypted)
         {
             using (System.Security.Cryptography.MD5 md5Scrypting = System.Security.Cryptography.MD5.Create())
@@ -26,6 +26,8 @@ namespace EncryptingViaMD5
 
                 for (int i = 0; i < ValueHashByte.Length; i++)
                     PersonalizedString.Append(ValueHashByte[i].ToString("x2"));
+
+                Console.WriteLine("Use the following dev-safe password as your encripted password");
                 return PersonalizedString.ToString();
             }
         }
