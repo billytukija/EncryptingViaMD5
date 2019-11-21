@@ -8,11 +8,37 @@ namespace EncryptingViaMD5
         static void Main(string[] args)
         {
             string password;
+            bool next = true;
 
-            Console.WriteLine("Enter your dev-safe password: ");
-            password = Console.ReadLine();
-            Console.WriteLine(EncryptingMD5(password));
-            Console.ReadLine();
+            while (next)
+            {
+                Console.WriteLine("Enter your dev-safe password: ");
+                password = Console.ReadLine();
+
+                if (password != "")
+                {
+                    Console.WriteLine(EncryptingMD5(password));
+                    Console.ReadLine();
+
+                    Console.WriteLine("Deseja gerar mais outra senha? 0 - sim e 1 - Não");
+                    var emptyRes = Console.ReadLine();
+
+                    if (emptyRes == "")
+                    {
+                        Console.WriteLine("Informa a senha para criptografiar");
+                    }
+                    else
+                    {
+                        var res = Console.ReadLine();
+
+                        if (res == "0")
+                            next = true;
+                    }
+                }
+                else {
+                    Console.Clear();
+                }
+            }
         }
         private static string EncryptingMD5(string valueToBeEncrypted)
         {
@@ -27,6 +53,7 @@ namespace EncryptingViaMD5
                 for (int i = 0; i < ValueHashByte.Length; i++)
                     PersonalizedString.Append(ValueHashByte[i].ToString("x2"));
 
+                Console.Clear();
                 Console.WriteLine("Use the following dev-safe password as your encripted password");
                 return PersonalizedString.ToString();
             }
